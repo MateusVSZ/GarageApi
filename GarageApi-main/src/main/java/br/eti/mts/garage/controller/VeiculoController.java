@@ -42,4 +42,21 @@ public class VeiculoController {
 
     }
 
+    @GetMapping("/forsale/{idNum}")
+    public ResponseEntity<VeiculosMinDTO> findById(@PathVariable long idNum) {
+        VeiculosMinDTO result = veiculoService.findById(idNum);
+
+        if (result == null) {
+            //ops...garage vazia
+            //notFound 404
+            return ResponseEntity.notFound().build();
+
+        } else {
+            //eba tem dados!
+            //ok devolve 200
+            return ResponseEntity.ok(result);
+
+        }
+    }
+
 }

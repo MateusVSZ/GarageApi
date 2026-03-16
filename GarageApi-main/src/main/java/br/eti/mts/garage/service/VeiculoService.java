@@ -21,13 +21,12 @@ public class VeiculoService {
      * GarageRepository. Seria uma abreviação de “GarageRepository
      * garageRepository = new GarageRepository();”. Ele injeta a dependência
      * dentro da classe.
-*
+     *
      */
     //Aqui pega tudo da minha classe Veiculo @Entity List<Veiculo>, minha classe objeto onde tem todos os atributos e getters and setters  
     /* public List<Veiculo> findAll() { 
         List<Veiculo> result = garageRepository.findAll();
         return result; */
-
     @Autowired
     private VeiculoRepository veiculoRepository;
 
@@ -35,7 +34,14 @@ public class VeiculoService {
 
         List<Veiculo> result = veiculoRepository.findAll();
         return result;
-        
+
     }
 
+    public VeiculosMinDTO findById(long id) {
+        Veiculo result = veiculoRepository.findById(id);
+        VeiculosMinDTO resultDTO = new VeiculosMinDTO(result);
+        return resultDTO;
+    
+
+}
 }
