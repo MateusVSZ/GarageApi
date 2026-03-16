@@ -38,22 +38,4 @@ public class VeiculoService {
         
     }
 
-        public VeiculosMinDTO findById(long id){
-            Veiculo result = veiculoRepository.findById(id);
-            VeiculosMinDTO resultDTO = new VeiculosMinDTO(result);
-            return resultDTO;
-        }
-        public List<Veiculo> findByCorIgnoreCase(String cor){
-        List<Veiculo> result = veiculoRepository.findByCorIgnoreCase(cor);
-        return result;
-        }
-        public List<Veiculo> findByAno(int ano){
-        List<Veiculo> result = veiculoRepository.findByAno(ano);
-        return result;
-        }
-        
 }
-
-        
-
-

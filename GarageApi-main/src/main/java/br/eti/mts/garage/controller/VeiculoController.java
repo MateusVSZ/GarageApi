@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.eti.mts.garage.repositories.VeiculoRepository;
+import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -36,57 +39,6 @@ public class VeiculoController {
     public List<Veiculo> findAll() {
         List<Veiculo> result = veiculoService.findAll();
         return result;
-
-    }
-
-    @GetMapping("/forsale/{idNum}")
-    public ResponseEntity<VeiculosMinDTO> findById(@PathVariable long idNum) {
-        VeiculosMinDTO result = veiculoService.findById(idNum);
-
-        if (result == null) {
-            //ops...garage vazia
-            //notFound 404
-            return ResponseEntity.notFound().build();
-
-        } else {
-            //eba tem dados!
-            //ok devolve 200
-            return ResponseEntity.ok(result);
-
-        }
-    }
-
-    @GetMapping("color/{cor}")
-    public ResponseEntity<List<Veiculo>> findByCorIgnoreCase(@PathVariable String cor) {
-        List<Veiculo> result = veiculoService.findByCorIgnoreCase(cor);
-
-        if (result == null) {
-            //ops...garage vazia
-            //notFound 404
-            return ResponseEntity.notFound().build();
-
-        } else {
-            //eba tem dados!
-            //ok devolve 200
-            return ResponseEntity.ok(result);
-
-        }
-    }
-
-    @GetMapping("year/{ano}")
-    public ResponseEntity<List<Veiculo>> findByAnoIgnoreCase(@PathVariable int ano) {
-        List<Veiculo> result = veiculoService.findByAno(ano);
-
-        if (result == null) {
-            //ops...garage vazia
-            //notFound 404
-            return ResponseEntity.notFound().build();
-
-        } else {
-            //eba tem dados!
-            //ok devolve 200
-            return ResponseEntity.ok(result);
-        }
 
     }
 
