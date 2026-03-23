@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.eti.mts.garage.repositories.VeiculoRepository;
+import jakarta.persistence.Id;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -39,12 +41,7 @@ public class VeiculoService {
         Veiculo result = veiculoRepository.findById(id);
         VeiculosMinDTO resultDTO = new VeiculosMinDTO(result);
         return resultDTO;
+    
 
-    }
-
-    public List<Veiculo> findByCorIgnoreCase(String cor) {
-        List<Veiculo> result = veiculoRepository.findByCorIgnoreCase(cor);
-        return result;
-    }
-
+}
 }
