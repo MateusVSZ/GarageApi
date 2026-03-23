@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.eti.mts.garage.repositories.VeiculoRepository;
+import java.util.Optional;
 
 /**
  *
@@ -46,11 +47,15 @@ public class VeiculoService {
         List<Veiculo> result = veiculoRepository.findByCorIgnoreCase(cor);
         return result;
     }
-    public List<Veiculo>findByAno(int ano) {
+
+    public List<Veiculo> findByAno(int ano) {
         List<Veiculo> result = veiculoRepository.findByAno(ano);
         return result;
     }
 
-    
+    public Veiculo salvarVeiculo(Veiculo veic) {
+        return veiculoRepository.save(veic);
+
+    }
 
 }

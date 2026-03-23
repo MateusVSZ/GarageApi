@@ -4,12 +4,18 @@ import br.eti.mts.garage.DTO.VeiculosMinDTO;
 import br.eti.mts.garage.entities.Veiculo;
 import br.eti.mts.garage.service.VeiculoService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
@@ -32,7 +38,7 @@ public class VeiculoController {
 
     @CrossOrigin
     @GetMapping("/forsale")
-    public List<Veiculo>findAll() {
+    public List<Veiculo> findAll() {
         List<Veiculo> result = veiculoService.findAll();
         return result;
 
@@ -55,8 +61,8 @@ public class VeiculoController {
         }
     }
 
-    @GetMapping("color/{cor}")
-    public ResponseEntity<List<Veiculo>>findByCorIgnoreCase(@PathVariable String cor) {
+    @GetMapping("/color/{cor}")
+    public ResponseEntity<List<Veiculo>> findByCorIgnoreCase(@PathVariable String cor) {
         List<Veiculo> result = veiculoService.findByCorIgnoreCase(cor);
 
         if (result == null) {
@@ -72,8 +78,9 @@ public class VeiculoController {
         }
 
     }
-       @GetMapping("year/{ano}")
-    public ResponseEntity<List<Veiculo>>findByAno(@PathVariable int ano) {
+
+    @GetMapping("/year/{ano}")
+    public ResponseEntity<List<Veiculo>> findByAno(@PathVariable int ano) {
         List<Veiculo> result = veiculoService.findByAno(ano);
 
         if (result == null) {
@@ -89,9 +96,12 @@ public class VeiculoController {
 
     }
 
+    @PostMapping("/forsale")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Veiculo saveVeiculo(@RequestBody Veiculo novoVeiculo) {
+
+        return veiculoService.saveVeiculo(novoVeiculo);
+
+        
+    }
 }
-    
-
-
-
-
