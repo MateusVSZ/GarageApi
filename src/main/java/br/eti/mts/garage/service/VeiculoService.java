@@ -46,5 +46,11 @@ public class VeiculoService {
         List<Veiculo> result = veiculoRepository.findByCorIgnoreCase(cor);
         return result;
     }
+    public List<Veiculo>findByAno(int ano) {
+        List<Veiculo> result = veiculoRepository.findByAno(ano);
+        return result;
+    }
+
+    
 
 }

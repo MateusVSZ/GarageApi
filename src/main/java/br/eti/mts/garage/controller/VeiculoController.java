@@ -32,12 +32,11 @@ public class VeiculoController {
 
     @CrossOrigin
     @GetMapping("/forsale")
-    public List<Veiculo> findAll() {
+    public List<Veiculo>findAll() {
         List<Veiculo> result = veiculoService.findAll();
         return result;
 
     }
-
 
     @GetMapping("/forsale/{idNum}")
     public ResponseEntity<VeiculosMinDTO> findById(@PathVariable long idNum) {
@@ -55,8 +54,9 @@ public class VeiculoController {
 
         }
     }
- @GetMapping("color/{cor}")
-    public ResponseEntity<List<Veiculo>> findByCorIgnoreCase(@PathVariable String cor) {
+
+    @GetMapping("color/{cor}")
+    public ResponseEntity<List<Veiculo>>findByCorIgnoreCase(@PathVariable String cor) {
         List<Veiculo> result = veiculoService.findByCorIgnoreCase(cor);
 
         if (result == null) {
@@ -70,6 +70,28 @@ public class VeiculoController {
             return ResponseEntity.ok(result);
 
         }
+
+    }
+       @GetMapping("year/{ano}")
+    public ResponseEntity<List<Veiculo>>findByAno(@PathVariable int ano) {
+        List<Veiculo> result = veiculoService.findByAno(ano);
+
+        if (result == null) {
+            //ops...garage vazia
+            //notFound 404
+            return ResponseEntity.notFound().build();
+
+        } else {
+            //eba tem dados!
+            //ok devolve 200
+            return ResponseEntity.ok(result);
+        }
+
     }
 
 }
+    
+
+
+
+
